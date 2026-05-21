@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michelle Peiret HEALTH — Supplement Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,300;1,6..96,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --white:#fff; --off:#f7f8fc;
+      --blue-deep:#0f2757; --blue-pri:#1e40af; --blue-mid:#2563eb; --blue-lt:#93c5fd; --sky:#0ea5e9;
+      --purple-deep:#3b0764; --purple:#7c3aed; --purple-lt:#ede9fe;
+      --rose:#be123c; --teal:#0891b2; --teal-lt:#e0f2fe;
+      --txt:#0c2340; --txt2:#1e3a5f; --muted:#5a7290; --faint:#94a3b8;
+      --border:#dde4ef;
+      --sh:0 4px 28px rgba(15,39,87,.1);
+      --sh-lg:0 16px 52px rgba(15,39,87,.18);
+      --ease:cubic-bezier(.16,1,.3,1);
+      --serif:'Bodoni Moda','Didot',Georgia,serif;
+      --sans:'Jost',-apple-system,sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);font-size:16px;color:var(--txt);background:var(--white);-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
+    :focus-visible{outline:2px solid var(--blue-mid);outline-offset:3px;border-radius:4px}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+    /* ── SHARED ──────────────────────────────── */
+    .lbl{display:block;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+    .lbl-w{color:rgba(255,255,255,.7)}
+    .h2{font-family:var(--serif);font-size:clamp(2rem,5.5vw,3.6rem);font-weight:400;line-height:1.1;color:var(--txt);margin-bottom:14px}
+    .h2 em{font-style:italic;color:var(--blue-pri)}
+    .h2-w{color:#fff}.h2-w em{color:var(--blue-lt)}
+    .desc{font-size:16px;line-height:1.75;color:var(--muted);max-width:580px}
+    .desc-w{color:rgba(255,255,255,.75)}
+    .fade{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+    .fade.on{opacity:1;transform:none}
+
+    /* ── NAV ─────────────────────────────────── */
+    nav{
+      position:sticky;top:0;z-index:100;
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(16px) saturate(160%);
+      -webkit-backdrop-filter:blur(16px) saturate(160%);
+      border-bottom:1px solid rgba(147,197,253,.2);
+      padding:10px 20px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .nav-logo{height:64px;width:auto;display:block}
+    @media(min-width:480px){.nav-logo{height:80px}}
+    @media(min-width:768px){.nav-logo{height:100px}}
+    .nav-shop{
+      background:linear-gradient(135deg,var(--blue-pri),var(--purple));
+      color:#fff;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+      padding:10px 14px;min-height:44px;border-radius:100px;text-decoration:none;
+      display:inline-flex;align-items:center;cursor:pointer;touch-action:manipulation;
+      transition:transform .22s var(--ease),box-shadow .22s;
+      box-shadow:0 4px 18px rgba(37,99,235,.28);white-space:nowrap;
+    }
+    @media(min-width:480px){.nav-shop{font-size:12px;padding:12px 20px;letter-spacing:.1em}}
+    .nav-shop:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.38)}
+
+    /* ── HERO ────────────────────────────────── */
+    .hero{
+      position:relative;min-height:92vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:flex-end;
+      padding:0 0 52px;overflow:hidden;
+    }
+    .hero-photo{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;object-position:center top;z-index:0;
+    }
+    .hero-overlay{
+      position:absolute;inset:0;z-index:1;
+      background:
+        linear-gradient(to bottom, rgba(9,17,48,.45) 0%, rgba(9,17,48,.1) 35%, rgba(9,17,48,.62) 65%, rgba(9,17,48,.92) 100%),
+        linear-gradient(135deg, rgba(30,64,175,.35) 0%, rgba(124,58,237,.3) 100%);
+    }
+    .hero-body{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:700px;width:100%}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,.12);backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.28);color:#fff;
+      font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+      padding:7px 16px;border-radius:100px;margin-bottom:20px;
+    }
+    .hero-dot{width:7px;height:7px;background:var(--sky);border-radius:50%;animation:pulse 2.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    .hero-h1{
+      font-family:var(--serif);font-size:clamp(3rem,10vw,6.8rem);
+      font-weight:400;line-height:1;letter-spacing:-.03em;color:#fff;
+      margin-bottom:16px;
+    }
+    .hero-h1 em{font-style:italic;color:var(--blue-lt)}
+    .hero-sub{font-size:16px;line-height:1.65;color:rgba(255,255,255,.78);font-weight:300;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+    .hero-btns{display:flex;flex-direction:column;gap:14px;align-items:center}
+    .btn-hero{
+      background:#fff;color:var(--blue-pri);
+      font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      padding:16px 36px;min-height:56px;border-radius:100px;
+      text-decoration:none;display:inline-flex;align-items:center;
+      cursor:pointer;touch-action:manipulation;
+      box-shadow:0 6px 28px rgba(0,0,0,.25);
+      transition:transform .22s var(--ease),box-shadow .22s;
+    }
+    .btn-hero:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    .btn-ghost-w{
+      color:rgba(255,255,255,.82);font-size:13px;font-weight:400;
+      text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);
+      padding-bottom:2px;display:inline-block;touch-action:manipulation;cursor:pointer;
+    }
+    .hero-stats{
+      position:relative;z-index:2;
+      display:flex;gap:0;margin-top:0;
+      border-top:1px solid rgba(255,255,255,.18);
+      width:100%;max-width:500px;
+    }
+    .hero-stat{flex:1;text-align:center;padding:18px 10px 0}
+    .stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:#fff;display:block;line-height:1}
+    .stat-l{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;display:block}
+
+    /* ── SCIENCE STRIP ───────────────────────── */
+    .sci-strip{
+      position:relative;overflow:hidden;
+      padding:60px 20px;
+    }
+    @media(min-width:768px){.sci-strip{padding:80px 24px}}
+    .sci-strip-bg{
+      position:absolute;inset:0;
+      background-image:url('../../Ad%20Creative-references/Assets/scientific%20background/abstract_17.jpeg');
+      background-size:cover;background-position:center;
+      filter:saturate(1.3) brightness(.55);
+    }
+    .sci-strip-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(15,39,87,.82) 0%,rgba(76,29,149,.75) 100%);
+    }
+    .sci-strip-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center}
+    .sci-strip-title{
+      font-family:var(--serif);font-size:clamp(1.8rem,5vw,3.2rem);
+      font-weight:300;color:#fff;line-height:1.15;margin-bottom:14px;
+    }
+    .sci-strip-title em{font-style:italic;color:var(--blue-lt)}
+    .sci-strip-sub{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:520px;margin:0 auto 40px}
+    .sci-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+    @media(min-width:480px){.sci-facts{gap:20px}}
+    .sci-fact{
+      background:rgba(255,255,255,.1);backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:16px;padding:18px 20px;min-width:120px;text-align:center;
+    }
+    .sci-fact-num{font-family:var(--serif);font-size:1.8rem;font-weight:500;color:#fff;display:block;line-height:1}
+    .sci-fact-lbl{font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;display:block}
+
+    /* ── PRODUCTS ────────────────────────────── */
+    .products{padding:64px 16px;background:var(--off);position:relative;overflow:hidden}
+    @media(min-width:768px){.products{padding:88px 20px}}
+    .products-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+    .sec-hd{text-align:center;margin-bottom:48px}
+    @media(min-width:768px){.sec-hd{margin-bottom:60px}}
+    .sec-hd .desc{margin:0 auto}
+
+    /* Scientific image background for products section */
+    .prod-bg{
+      position:absolute;inset:0;pointer-events:none;
+      background-image:url('../../Ad%20Creative-references/Assets/scientific%20background/For%20background%20of%20products.jpg');
+      background-size:cover;background-position:center;
+      opacity:.1;
+    }
+
+    .prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media(min-width:540px){.prod-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
+    @media(min-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);gap:24px}}
+
+    .pc{
+      background:var(--white);border-radius:20px;overflow:hidden;
+      display:flex;flex-direction:column;cursor:pointer;
+      box-shadow:0 2px 16px rgba(15,39,87,.07);
+      border:1px solid var(--border);
+      opacity:0;transform:translateY(22px);
+      transition:opacity .55s var(--ease),transform .55s var(--ease),box-shadow .3s,border-color .3s;
+    }
+    .pc.on{opacity:1;transform:none}
+    .pc.on:hover{box-shadow:var(--sh-lg);border-color:var(--blue-lt);transform:translateY(-4px)}
+    .pc:nth-child(1){transition-delay:.04s}.pc:nth-child(2){transition-delay:.09s}
+    .pc:nth-child(3){transition-delay:.14s}.pc:nth-child(4){transition-delay:.19s}
+    .pc:nth-child(5){transition-delay:.24s}.pc:nth-child(6){transition-delay:.29s}
+
+    .pc-img{
+      position:relative;overflow:hidden;
+      height:200px;background:#eef2fa;
+      display:flex;align-items:center;justify-content:center;
+      padding:10px 8px;
+    }
+    @media(min-width:480px){.pc-img{height:260px;padding:14px 12px}}
+    @media(min-width:768px){.pc-img{height:290px}}
+    .pc-img img{
+      max-height:100%;max-width:100%;
+      object-fit:contain;object-position:center center;
+      display:block;
+      transition:transform .5s var(--ease);
+    }
+    .pc.on:hover .pc-img img{transform:scale(1.05)}
+
+    .pc-body{padding:14px 14px 16px;flex:1;display:flex;flex-direction:column}
+    .pc-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:8px}
+    .bb{background:#eef4ff;color:var(--blue-pri)}
+    .bp{background:var(--purple-lt);color:var(--purple)}
+    .br{background:#fff0f3;color:var(--rose)}
+    .bt{background:var(--teal-lt);color:var(--teal)}
+    .pc-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;line-height:1.15;color:var(--txt);margin-bottom:5px}
+    .pc-tag{font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:8px;flex:1}
+    .pc-ing{font-size:10px;font-weight:600;color:var(--sky);letter-spacing:.05em;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+    .pc-ing::before{content:'';display:inline-block;width:11px;height:1px;background:var(--sky)}
+    .pc-price{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--txt);margin-bottom:12px}
+    .pc-cta{
+      display:flex;align-items:center;justify-content:center;
+      background:var(--blue-pri);color:#fff;
+      font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+      padding:13px;min-height:48px;border-radius:12px;
+      text-decoration:none;cursor:pointer;touch-action:manipulation;
+      transition:background .22s,transform .22s var(--ease);
+    }
+    .pc-cta:hover{background:var(--purple);transform:translateY(-1px)}
+
+    /* ── PROTOCOLS ───────────────────────────── */
+    .protocols{
+      padding:64px 16px;
+      background:var(--off);
+      position:relative;overflow:hidden;
+    }
+    @media(min-width:768px){.protocols{padding:88px 24px}}
+    .proto-inner{position:relative;z-index:1;max-width:960px;margin:0 auto}
+    .proto-hd{text-align:center;margin-bottom:48px}
+    @media(min-width:768px){.proto-hd{margin-bottom:56px}}
+    .proto-hd .desc{margin:0 auto}
+
+    .proto-grid{display:grid;grid-template-columns:1fr;gap:20px}
+    @media(min-width:540px){.proto-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+    @media(min-width:768px){.proto-grid{grid-template-columns:repeat(3,1fr);gap:24px}}
+
+    .proto-card{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;padding:24px 20px 22px;
+      display:flex;flex-direction:column;
+      box-shadow:0 2px 16px rgba(15,39,87,.07);
+      opacity:0;transform:translateY(22px);
+      transition:opacity .55s var(--ease),transform .55s var(--ease),box-shadow .3s,border-color .3s;
+    }
+    .proto-card.on{opacity:1;transform:none}
+    .proto-card.on:hover{box-shadow:var(--sh-lg);border-color:var(--blue-lt);transform:translateY(-4px)}
+    .proto-card:nth-child(1){transition-delay:.05s}.proto-card:nth-child(2){transition-delay:.15s}.proto-card:nth-child(3){transition-delay:.25s}
+
+    /* Protocol product bottle thumbnails */
+    .proto-bottles{
+      display:flex;align-items:flex-end;justify-content:center;
+      margin-bottom:22px;height:160px;gap:4px;
+    }
+    .proto-bottle{
+      flex:1;max-width:110px;height:100%;
+      background:transparent;
+      display:flex;align-items:flex-end;justify-content:center;
+    }
+    .proto-bottle img{
+      width:100%;height:100%;object-fit:contain;
+      object-position:center bottom;
+      mix-blend-mode:multiply;
+    }
+    @media(min-width:480px){.proto-bottles{height:180px}}
+
+    .proto-icon-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+    .proto-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .pi-m{background:linear-gradient(135deg,rgba(252,231,243,.7),rgba(237,233,254,.7))}
+    .pi-n{background:linear-gradient(135deg,rgba(238,244,255,.6),rgba(224,242,254,.6))}
+    .pi-l{background:linear-gradient(135deg,rgba(224,242,254,.6),rgba(238,244,255,.6))}
+    .proto-ico svg{width:18px;height:18px}
+
+    .proto-title{font-family:var(--serif);font-size:1.35rem;font-weight:500;color:var(--txt);margin-bottom:3px}
+    .proto-sub{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .proto-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+    .proto-tag{background:#eef4ff;border:1px solid var(--border);color:var(--blue-pri);font-size:11px;font-weight:400;padding:4px 11px;border-radius:100px}
+    .proto-sci{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px;flex:1;padding-top:14px;border-top:1px solid var(--border)}
+    .proto-cta{
+      display:flex;align-items:center;justify-content:center;
+      background:var(--blue-pri);color:#fff;
+      font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      padding:13px 22px;min-height:52px;border-radius:100px;
+      text-decoration:none;cursor:pointer;touch-action:manipulation;
+      transition:background .22s,transform .22s var(--ease),box-shadow .22s;
+    }
+    .proto-cta:hover{background:var(--purple);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.3)}
+
+    /* ── DNA SCIENCE SECTION ─────────────────── */
+    .dna-section{
+      padding:64px 20px;background:var(--white);
+      position:relative;overflow:hidden;
+    }
+    @media(min-width:768px){.dna-section{padding:80px 24px}}
+    .dna-bg{
+      position:absolute;right:-60px;top:50%;transform:translateY(-50%);
+      opacity:.04;pointer-events:none;
+    }
+    .dna-inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
+    .dna-grid{display:grid;grid-template-columns:1fr;gap:32px}
+    @media(min-width:640px){.dna-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}}
+    .dna-text .lbl{color:var(--sky)}
+    .dna-text .h2{color:var(--txt)}
+    .dna-text .desc{font-size:15px}
+    .dna-points{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:14px}
+    .dna-points li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:var(--txt2)}
+    .dna-points li::before{
+      content:'';display:inline-block;flex-shrink:0;
+      width:20px;height:20px;border-radius:50%;margin-top:2px;
+      background:linear-gradient(135deg,var(--blue-pri),var(--purple));
+    }
+    .dna-visual{display:flex;justify-content:center;align-items:center}
+
+    /* ── TEA ─────────────────────────────────── */
+    .tea{padding:64px 16px;background:var(--off)}
+    @media(min-width:768px){.tea{padding:88px 24px}}
+    .tea-inner{max-width:1080px;margin:0 auto}
+    .tea-hd{text-align:center;margin-bottom:48px}
+    @media(min-width:768px){.tea-hd{margin-bottom:56px}}
+    .tea-hd .desc{margin:0 auto}
+
+    .tea-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media(min-width:540px){.tea-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+    @media(min-width:1024px){.tea-grid{grid-template-columns:repeat(5,1fr);gap:18px}}
+
+    .tc{
+      background:var(--white);border-radius:18px;overflow:hidden;
+      display:flex;flex-direction:column;cursor:pointer;
+      border:1px solid var(--border);
+      box-shadow:0 2px 16px rgba(15,39,87,.06);
+      opacity:0;transform:translateY(20px);
+      transition:opacity .5s var(--ease),transform .5s var(--ease),box-shadow .3s,border-color .3s;
+    }
+    .tc.on{opacity:1;transform:none}
+    .tc.on:hover{box-shadow:var(--sh-lg);border-color:var(--blue-lt);transform:translateY(-4px)}
+    .tc:nth-child(1){transition-delay:.03s}.tc:nth-child(2){transition-delay:.07s}
+    .tc:nth-child(3){transition-delay:.11s}.tc:nth-child(4){transition-delay:.15s}
+    .tc:nth-child(5){transition-delay:.19s}.tc:nth-child(6){transition-delay:.23s}
+    .tc:nth-child(7){transition-delay:.27s}.tc:nth-child(8){transition-delay:.31s}
+    .tc:nth-child(9){transition-delay:.35s}
+
+    .tc-img{
+      height:180px;display:flex;align-items:flex-end;justify-content:center;
+      padding:14px 10px 0;overflow:hidden;
+      background:linear-gradient(to bottom,#f3f0ff,#eef4ff);
+    }
+    @media(min-width:480px){.tc-img{height:200px}}
+    .tc-img img{
+      height:100%;width:auto;max-width:100%;object-fit:contain;
+      filter:drop-shadow(0 8px 16px rgba(0,0,0,.14));
+      transition:transform .5s var(--ease);
+    }
+    .tc.on:hover .tc-img img{transform:translateY(-6px) scale(1.04)}
+
+    .tc-body{padding:12px 12px 16px;flex:1}
+    .tc-lbl{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:5px;display:block}
+    .tc-name{font-family:var(--serif);font-size:1rem;font-weight:500;line-height:1.2;color:var(--txt);margin-bottom:5px}
+    .tc-desc{font-size:11px;line-height:1.55;color:var(--muted);margin-bottom:6px}
+    .tc-srvg{font-size:10px;color:var(--faint);letter-spacing:.05em}
+    .tc-price{font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--txt);margin-top:8px;display:block}
+    .tc-cta{
+      display:flex;align-items:center;justify-content:center;
+      background:var(--blue-pri);color:#fff;
+      font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+      padding:10px;min-height:42px;border-radius:10px;margin-top:10px;
+      text-decoration:none;cursor:pointer;touch-action:manipulation;
+      transition:background .22s,transform .22s var(--ease);
+    }
+    .tc-cta:hover{background:var(--purple);transform:translateY(-1px)}
+
+    /* ── ABOUT MICHELLE ──────────────────────── */
+    .about{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center}
+    .about-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .about-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to right,rgba(15,39,87,.92) 0%,rgba(15,39,87,.78) 50%,rgba(15,39,87,.1) 100%);
+    }
+    @media(max-width:600px){
+      .about-overlay{background:linear-gradient(to bottom,rgba(15,39,87,.1) 0%,rgba(15,39,87,.9) 55%,rgba(15,39,87,.97) 100%)}
+    }
+    .about-body{
+      position:relative;z-index:1;padding:52px 24px;max-width:600px;
+    }
+    @media(max-width:600px){
+      .about-body{margin-top:200px;padding:36px 20px 48px}
+    }
+    .about-body .lbl{color:rgba(255,255,255,.6)}
+    .about-title{font-family:var(--serif);font-size:clamp(1.8rem,5vw,3rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:16px}
+    .about-title em{font-style:italic;color:var(--blue-lt)}
+    .about-bio{font-size:15px;line-height:1.78;color:rgba(255,255,255,.72);font-weight:300;margin-bottom:24px;max-width:480px}
+    .creds{display:flex;flex-wrap:wrap;gap:9px}
+    .cred{
+      background:rgba(255,255,255,.1);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:100px;padding:8px 14px;
+      font-size:12px;font-weight:500;color:rgba(255,255,255,.9);
+    }
+
+    /* ── QUALITY ─────────────────────────────── */
+    .quality{padding:64px 20px;background:var(--white)}
+    @media(min-width:768px){.quality{padding:80px 24px}}
+    .qual-inner{max-width:840px;margin:0 auto;text-align:center}
+    .qual-inner .desc{margin:0 auto}
+    .marks{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:44px}
+    .mark{
+      background:var(--off);border:1px solid var(--border);border-radius:20px;
+      padding:22px 18px;flex:1;min-width:130px;max-width:180px;text-align:center;
+      transition:box-shadow .3s,transform .3s var(--ease);cursor:default;
+    }
+    .mark:hover{box-shadow:var(--sh);transform:translateY(-3px)}
+    .mark-ico{display:flex;justify-content:center;margin-bottom:10px}
+    .mark-ico svg{width:28px;height:28px}
+    .mark-nm{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px}
+    .mark-ds{font-size:11px;color:var(--muted);line-height:1.5}
+
+    /* ── FOOTER CTA ──────────────────────────── */
+    .fcta{
+      background:linear-gradient(135deg,var(--blue-deep) 0%,var(--purple-deep) 100%);
+      padding:72px 20px;text-align:center;color:#fff;position:relative;overflow:hidden;
+    }
+    @media(min-width:768px){.fcta{padding:90px 24px}}
+    .fcta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:24px 24px}
+    .fcta>*{position:relative}
+    .fcta-title{font-family:var(--serif);font-size:clamp(2rem,6vw,4rem);font-weight:400;line-height:1.08;margin-bottom:18px}
+    .fcta-title em{font-style:italic}
+    .fcta-sub{font-size:16px;opacity:.7;margin:0 auto 40px;max-width:460px;line-height:1.68;font-weight:300}
+    .btn-w{
+      background:#fff;color:var(--blue-pri);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      padding:18px 44px;min-height:58px;border-radius:100px;
+      text-decoration:none;display:inline-flex;align-items:center;
+      cursor:pointer;touch-action:manipulation;
+      box-shadow:0 4px 24px rgba(0,0,0,.2);
+      transition:transform .22s var(--ease),box-shadow .22s;
+    }
+    .btn-w:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+
+    footer{background:#080f1e;color:rgba(255,255,255,.4);padding:32px 20px;text-align:center}
+    footer p{font-size:12px;line-height:1.65}
+    footer a{color:rgba(255,255,255,.4);text-decoration:none}
+    footer a:hover{color:var(--blue-lt)}
+    .disc{font-size:11px;opacity:.5;margin-top:10px}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <img src="../../Ad%20Creative-references/Assets/LOGO%20SCREEN%20SHOT.png"
+       alt="Michelle Peiret HEALTH" class="nav-logo">
+  <a href="https://michellepeiret.com/mp-health/" class="nav-shop" touch-action="manipulation">Shop Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <img class="hero-photo"
+       src="../../Ad%20Creative-references/Assets/michelle%20pics%20with%20products%20/212MICHELLE%20PEIRET%20CUMPLE%20SUPLEMENTOS-Edit%20(1).jpg"
+       alt="Michelle Peiret in her lab coat with supplements">
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-body">
+    <span class="hero-badge"><span class="hero-dot"></span>Nutrigenomic Specialist</span>
+    <h1 class="hero-h1">Science you can <em>feel.</em></h1>
+    <p class="hero-sub">Every formula is designed by a certified Nutrigenomic Specialist — precision nutrition rooted in your DNA.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-hero">Explore the Collection</a>
+      <a href="#protocols" class="btn-ghost-w">View Clinically Validated Protocols ↓</a>
+    </div>
+  </div>
+  <div class="hero-stats" aria-label="Brand statistics">
+    <div class="hero-stat"><span class="stat-n">6</span><span class="stat-l">Supplements</span></div>
+    <div class="hero-stat"><span class="stat-n">9</span><span class="stat-l">Functional Teas</span></div>
+    <div class="hero-stat"><span class="stat-n">100%</span><span class="stat-l">Science-Based</span></div>
+  </div>
+</section>
+
+<!-- SCIENCE STRIP (Cell/DNA background) -->
+<section class="sci-strip" aria-label="Science Statement">
+  <div class="sci-strip-bg" aria-hidden="true"></div>
+  <div class="sci-strip-overlay" aria-hidden="true"></div>
+  <div class="sci-strip-inner fade">
+    <span class="lbl lbl-w">Precision at the Cellular Level</span>
+    <h2 class="sci-strip-title">Your genes hold the <em>blueprint.</em><br>Your supplements should too.</h2>
+    <p class="sci-strip-sub">Nutrigenomics studies how your unique genetic makeup responds to nutrition. Every Michelle Peiret HEALTH formula is designed with this in mind.</p>
+    <div class="sci-facts">
+      <div class="sci-fact"><span class="sci-fact-num">Eurofins</span><span class="sci-fact-lbl">3rd Party Certified</span></div>
+      <div class="sci-fact"><span class="sci-fact-num">Magtein®</span><span class="sci-fact-lbl">Patented L-Threonate</span></div>
+      <div class="sci-fact"><span class="sci-fact-num">UC-II®</span><span class="sci-fact-lbl">Patented Collagen</span></div>
+      <div class="sci-fact"><span class="sci-fact-num">GMP</span><span class="sci-fact-lbl">Certified Facilities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <!-- Scientific background image -->
+  <div class="prod-bg" aria-hidden="true"></div>
+
+  <div class="products-inner">
+    <div class="sec-hd fade">
+      <span class="lbl">The Collection</span>
+      <h2 class="h2">Six formulas. <em>One mission.</em></h2>
+      <p class="desc">Each supplement targets a distinct physiological pathway — choose individually or combine in a clinically validated protocol.</p>
+    </div>
+    <div class="prod-grid">
+
+      <!-- Berberina Complex -->
+      <article class="pc">
+        <div class="pc-img">
+          <img src="https://michellepeiret.com/wp-content/uploads/2026/05/berberina-complex-01.webp"
+               alt="Berberina Complex" loading="lazy">
+        </div>
+        <div class="pc-body">
+          <span class="pc-badge br">Metabolic</span>
+          <h3 class="pc-name">Berberina Complex</h3>
+          <p class="pc-tag">Healthy Glucose · Metabolic Formula · Anti-Aging</p>
+          <p class="pc-ing">AMPK Pathway Activation</p>
+          <p class="pc-price">$47</p>
+          <a href="https://michellepeiret.com/producto/berberina-complex/" class="pc-cta" touch-action="manipulation">Shop Now →</a>
+        </div>
+      </article>
+
+      <!-- Magnesium Glycinate+ -->
+      <article class="pc">
+        <div class="pc-img">
+          <img src="https://michellepeiret.com/wp-content/uploads/2026/05/Magnesium-1.webp"
+               alt="Magnesium Glycinate+" loading="lazy">
+        </div>
+        <div class="pc-body">
+          <span class="pc-badge bb">Sleep · Mood</span>
+          <h3 class="pc-name">Magnesium Glycinate+</h3>
+          <p class="pc-tag">Deep Sleep · Mood · Nervous System Support</p>
+          <p class="pc-ing">Chelated Glycinate Form</p>
+          <p class="pc-price">$38</p>
+          <a href="https://michellepeiret.com/producto/magnesium-glycinate-plus/" class="pc-cta" touch-action="manipulation">Shop Now →</a>
+        </div>
+      </article>
+
+      <!-- Focus+ -->
+      <article class="pc">
+        <div class="pc-img">
+          <img src="https://michellepeiret.com/wp-content/uploads/2026/05/focus-plus.webp"
+               alt="Focus+" loading="lazy">
+        </div>
+        <div class="pc-body">
+          <span class="pc-badge bb">Cognitive</span>
+          <h3 class="pc-name">Focus+</h3>
+          <p class="pc-tag">Clarity · Focus · Long-Term Brain Health</p>
+          <p class="pc-ing">Magtein® Magnesium L-Threonate</p>
+          <p class="pc-price">$59</p>
+          <a href="https://michellepeiret.com/producto/focus-focus/" class="pc-cta" touch-action="manipulation">Shop Now →</a>
+        </div>
+      </article>
+
+      <!-- Mobility -->
+      <article class="pc">
+        <div class="pc-img">
+          <img src="https://michellepeiret.com/wp-content/uploads/2023/05/mp-mobility.webp"
+               alt="Mobility" loading="lazy">
+        </div>
+        <div class="pc-body">
+          <span class="pc-badge bt">Anti-Aging</span>
+          <h3 class="pc-name">Mobility</h3>
+          <p class="pc-tag">Joint Mobility · Bone Health · Recovery</p>
+          <p class="pc-ing">UC-II® Patented Collagen</p>
+          <p class="pc-price">$57</p>
+          <a href="https://michellepeiret.com/producto/mobility-magnesium-collagen-plus/" class="pc-cta" touch-action="manipulation">Shop Now →</a>
+        </div>
+      </article>
+
+      <!-- BM10 Max -->
+      <article class="pc">
+        <div class="pc-img">
+          <img src="https://michellepeiret.com/wp-content/uploads/2025/08/mp-bm10.webp"
+               alt="BM10 Max" loading="lazy">
+        </div>
+        <div class="pc-body">
+          <span class="pc-badge bp">Longevity</span>
+          <h3 class="pc-name">BM10 Max</h3>
+          <p class="pc-tag">11-Ingredient Longevity Formula</p>
+          <p class="pc-ing">Resveratrol · Astaxanthin · Boron 6mg</p>
+          <p class="pc-price">$37</p>
+          <a href="https://michellepeiret.com/producto/bm10-max/" class="pc-cta" touch-action="manipulation">Shop Now →</a>
+        </div>
+      </article>
+
+      <!-- Omega 3 -->
+      <article class="pc">
+        <div class="pc-img">
+          <img src="https://michellepeiret.com/wp-content/uploads/2023/05/omega3.webp"
+               alt="Omega 3" loading="lazy">
+        </div>
+        <div class="pc-body">
+          <span class="pc-badge bt">Cardiovascular</span>
+          <h3 class="pc-name">Omega 3</h3>
+          <p class="pc-tag">Heart · Brain · Anti-Inflammatory</p>
+          <p class="pc-ing">Icelandic · Molecular Distillation</p>
+          <p class="pc-price">$29</p>
+          <a href="https://michellepeiret.com/producto/omega-3/" class="pc-cta" touch-action="manipulation">Shop Now →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOLS — with product bottle images -->
+<section class="protocols" id="protocols">
+  <div class="proto-inner">
+    <div class="proto-hd fade">
+      <span class="lbl">Clinically Validated</span>
+      <h2 class="h2">Science-Backed <em>Protocols</em></h2>
+      <p class="desc">Synergistic combinations selected from peer-reviewed research — not convenience. Three physiological targets, three complete stacks.</p>
+    </div>
+    <div class="proto-grid">
+
+      <!-- Metabolic Reset -->
+      <article class="proto-card">
+        <div class="proto-bottles">
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2026/05/berberina-complex-01.webp" alt="Berberina Complex" loading="lazy"></div>
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/omega3.webp" alt="Omega 3" loading="lazy"></div>
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2025/08/mp-bm10.webp" alt="BM10 Max" loading="lazy"></div>
+        </div>
+        <div class="proto-icon-row">
+          <div class="proto-ico pi-m">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(190,18,60,.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.6a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/><path d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"/>
+            </svg>
+          </div>
+          <h3 class="proto-title">Metabolic Reset</h3>
+        </div>
+        <p class="proto-sub">Blood Sugar · Weight · Liver Health</p>
+        <div class="proto-tags">
+          <span class="proto-tag">Berberina Complex</span>
+          <span class="proto-tag">Omega 3</span>
+          <span class="proto-tag">BM10 Max</span>
+        </div>
+        <p class="proto-sci">Berberine activates AMPK — the same pathway as metformin. Omega-3 EPA+DHA reduces insulin resistance and hepatic triglycerides. Resveratrol in BM10 activates SIRT1 for cellular metabolic efficiency. Three validated mechanisms, one synergistic stack.</p>
+        <a href="https://michellepeiret.com/mp-health/" class="proto-cta">Start This Protocol →</a>
+      </article>
+
+      <!-- Neuro-Recovery -->
+      <article class="proto-card">
+        <div class="proto-bottles">
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2026/05/Magnesium-1.webp" alt="Magnesium Glycinate+" loading="lazy"></div>
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2026/05/focus-plus.webp" alt="Focus+" loading="lazy"></div>
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/omega3.webp" alt="Omega 3" loading="lazy"></div>
+        </div>
+        <div class="proto-icon-row">
+          <div class="proto-ico pi-n">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(14,165,233,.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/><path d="M18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/>
+            </svg>
+          </div>
+          <h3 class="proto-title">Neuro-Recovery</h3>
+        </div>
+        <p class="proto-sub">Sleep · Cognition · Stress Relief</p>
+        <div class="proto-tags">
+          <span class="proto-tag">Magnesium Glycinate+</span>
+          <span class="proto-tag">Focus+</span>
+          <span class="proto-tag">Omega 3</span>
+        </div>
+        <p class="proto-sci">Magnesium glycinate supports GABA receptors for deep sleep and cortisol regulation. Magtein® (L-Threonate) uniquely crosses the blood-brain barrier to increase synaptic density. Omega-3 DHA reduces neuroinflammation. Two magnesium forms — systemic and brain-specific.</p>
+        <a href="https://michellepeiret.com/mp-health/" class="proto-cta">Start This Protocol →</a>
+      </article>
+
+      <!-- Longevity Stack -->
+      <article class="proto-card">
+        <div class="proto-bottles">
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2025/08/mp-bm10.webp" alt="BM10 Max" loading="lazy"></div>
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/mp-mobility.webp" alt="Mobility" loading="lazy"></div>
+          <div class="proto-bottle"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/omega3.webp" alt="Omega 3" loading="lazy"></div>
+        </div>
+        <div class="proto-icon-row">
+          <div class="proto-ico pi-l">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(8,145,178,.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/>
+            </svg>
+          </div>
+          <h3 class="proto-title">Longevity Stack</h3>
+        </div>
+        <p class="proto-sub">Joints · Cellular Aging · Inflammation</p>
+        <div class="proto-tags">
+          <span class="proto-tag">BM10 Max</span>
+          <span class="proto-tag">Mobility</span>
+          <span class="proto-tag">Omega 3</span>
+        </div>
+        <p class="proto-sci">UC-II® Collagen (5 published RCTs) reduces joint pain via oral tolerance in gut-associated lymphoid tissue. Astaxanthin and Resveratrol target oxidative aging at the mitochondrial level. Omega-3 suppresses inflammatory cytokines TNF-α and IL-6.</p>
+        <a href="https://michellepeiret.com/mp-health/" class="proto-cta">Start This Protocol →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- DNA / SCIENCE PHILOSOPHY -->
+<section class="dna-section">
+  <svg class="dna-bg" width="320" height="640" viewBox="0 0 120 640" fill="none" aria-hidden="true">
+    <path d="M60 0 C90 40,30 80,60 120 S90 200,60 240 S30 320,60 360 S90 440,60 480 S30 560,60 600" stroke="#1e40af" stroke-width="2.5" fill="none"/>
+    <path d="M60 0 C30 40,90 80,60 120 S30 200,60 240 S90 320,60 360 S30 440,60 480 S90 560,60 600" stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+    <line x1="30" y1="80" x2="90" y2="80" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="80" r="4" fill="#7c3aed"/><circle cx="30" cy="80" r="4" fill="#1e40af"/>
+    <line x1="30" y1="120" x2="90" y2="120" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="120" r="4" fill="#1e40af"/><circle cx="30" cy="120" r="4" fill="#7c3aed"/>
+    <line x1="30" y1="160" x2="90" y2="160" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="160" r="4" fill="#7c3aed"/><circle cx="30" cy="160" r="4" fill="#1e40af"/>
+    <line x1="30" y1="200" x2="90" y2="200" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="200" r="4" fill="#1e40af"/><circle cx="30" cy="200" r="4" fill="#7c3aed"/>
+    <line x1="30" y1="240" x2="90" y2="240" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="240" r="4" fill="#7c3aed"/><circle cx="30" cy="240" r="4" fill="#1e40af"/>
+    <line x1="30" y1="280" x2="90" y2="280" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="280" r="4" fill="#1e40af"/><circle cx="30" cy="280" r="4" fill="#7c3aed"/>
+    <line x1="30" y1="320" x2="90" y2="320" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="320" r="4" fill="#7c3aed"/><circle cx="30" cy="320" r="4" fill="#1e40af"/>
+    <line x1="30" y1="360" x2="90" y2="360" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="360" r="4" fill="#1e40af"/><circle cx="30" cy="360" r="4" fill="#7c3aed"/>
+    <line x1="30" y1="400" x2="90" y2="400" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="400" r="4" fill="#7c3aed"/><circle cx="30" cy="400" r="4" fill="#1e40af"/>
+    <line x1="30" y1="440" x2="90" y2="440" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="440" r="4" fill="#1e40af"/><circle cx="30" cy="440" r="4" fill="#7c3aed"/>
+    <line x1="30" y1="480" x2="90" y2="480" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="480" r="4" fill="#7c3aed"/><circle cx="30" cy="480" r="4" fill="#1e40af"/>
+    <line x1="30" y1="520" x2="90" y2="520" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="520" r="4" fill="#1e40af"/><circle cx="30" cy="520" r="4" fill="#7c3aed"/>
+    <line x1="30" y1="560" x2="90" y2="560" stroke="#1e40af" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="560" r="4" fill="#7c3aed"/><circle cx="30" cy="560" r="4" fill="#1e40af"/>
+    <line x1="30" y1="600" x2="90" y2="600" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/><circle cx="90" cy="600" r="4" fill="#1e40af"/><circle cx="30" cy="600" r="4" fill="#7c3aed"/>
+  </svg>
+  <div class="dna-inner fade">
+    <div class="dna-grid">
+      <div class="dna-text">
+        <span class="lbl">Nutrigenomic Science</span>
+        <h2 class="h2">Your DNA is <em>unique.</em><br>Your nutrition should be too.</h2>
+        <p class="desc" style="font-size:15px">Nutrigenomics is the science of how your genes interact with the nutrients you consume. Different genetic variants respond differently to the same supplement — which is why Michelle Peiret designs formulas with genetic variability in mind.</p>
+        <ul class="dna-points">
+          <li>Patented ingredients at clinically validated doses — not marketing doses</li>
+          <li>Eurofins-certified purity testing on every batch produced</li>
+          <li>Bioavailable forms chosen for actual cellular uptake efficiency</li>
+          <li>Evidence-based protocols targeting specific genetic pathways</li>
+        </ul>
+      </div>
+      <div class="dna-visual" aria-hidden="true">
+        <svg width="220" height="420" viewBox="0 0 100 420" fill="none">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient>
+          </defs>
+          <path d="M50 0 C80 30,20 60,50 90 S80 150,50 180 S20 240,50 270 S80 330,50 360 S20 390,50 420" stroke="url(#g1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M50 0 C20 30,80 60,50 90 S20 150,50 180 S80 240,50 270 S20 330,50 360 S80 390,50 420" stroke="url(#g2)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <line x1="20" y1="30" x2="80" y2="30" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="60" x2="80" y2="60" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="90" x2="80" y2="90" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="120" x2="80" y2="120" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="150" x2="80" y2="150" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="180" x2="80" y2="180" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="210" x2="80" y2="210" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="240" x2="80" y2="240" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="270" x2="80" y2="270" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="300" x2="80" y2="300" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="330" x2="80" y2="330" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="360" x2="80" y2="360" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="390" x2="80" y2="390" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="30" r="4.5" fill="#7c3aed"/><circle cx="80" cy="30" r="4.5" fill="#1e40af"/>
+          <circle cx="80" cy="60" r="4.5" fill="#7c3aed"/><circle cx="20" cy="60" r="4.5" fill="#0ea5e9"/>
+          <circle cx="20" cy="90" r="4.5" fill="#1e40af"/><circle cx="80" cy="90" r="4.5" fill="#7c3aed"/>
+          <circle cx="80" cy="120" r="4.5" fill="#0ea5e9"/><circle cx="20" cy="120" r="4.5" fill="#1e40af"/>
+          <circle cx="20" cy="150" r="4.5" fill="#7c3aed"/><circle cx="80" cy="150" r="4.5" fill="#0ea5e9"/>
+          <circle cx="80" cy="180" r="4.5" fill="#1e40af"/><circle cx="20" cy="180" r="4.5" fill="#7c3aed"/>
+          <circle cx="20" cy="210" r="4.5" fill="#0ea5e9"/><circle cx="80" cy="210" r="4.5" fill="#1e40af"/>
+          <circle cx="80" cy="240" r="4.5" fill="#7c3aed"/><circle cx="20" cy="240" r="4.5" fill="#0ea5e9"/>
+          <circle cx="20" cy="270" r="4.5" fill="#1e40af"/><circle cx="80" cy="270" r="4.5" fill="#7c3aed"/>
+          <circle cx="80" cy="300" r="4.5" fill="#0ea5e9"/><circle cx="20" cy="300" r="4.5" fill="#1e40af"/>
+          <circle cx="20" cy="330" r="4.5" fill="#7c3aed"/><circle cx="80" cy="330" r="4.5" fill="#0ea5e9"/>
+          <circle cx="80" cy="360" r="4.5" fill="#1e40af"/><circle cx="20" cy="360" r="4.5" fill="#7c3aed"/>
+          <circle cx="20" cy="390" r="4.5" fill="#0ea5e9"/><circle cx="80" cy="390" r="4.5" fill="#1e40af"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEA LINE — all 9 -->
+<section class="tea" id="teas">
+  <div class="tea-inner">
+    <div class="tea-hd fade">
+      <span class="lbl">Botanical Functional Teas</span>
+      <h2 class="h2">Ritual in every <em>steep.</em></h2>
+      <p class="desc">Nine functional teas crafted with the same nutrigenomic precision as our supplements — targeting hormones, digestion, immunity, sleep, cortisol, and longevity.</p>
+    </div>
+    <div class="tea-grid">
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/22MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Digestive Balm Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Herbal Tea</span><h3 class="tc-name">Digestive Balm</h3><p class="tc-desc">Soothes heartburn and gastric discomfort. Gut lining support.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-balsamo-digestivo/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/41MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Adaptogen Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea Matcha</span><h3 class="tc-name">Adaptogen</h3><p class="tc-desc">Full-body adaptogen detox. Stress resilience and energy balance.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-adaptogenos-matcha/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/63MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Constipation Digestion Cortisol Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea Matcha</span><h3 class="tc-name">Constipation, Digestion &amp; Cortisol</h3><p class="tc-desc">Optimal digestive system. Reduces fat absorption, extends satiety.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-constipation-digestion-cortisol-levels/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/78MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Woman Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea</span><h3 class="tc-name">Woman</h3><p class="tc-desc">Hormones in balance — passion, focus, and feminine vitality.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-women-tea/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/97MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Men Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea</span><h3 class="tc-name">Men</h3><p class="tc-desc">Balanced hormones and optimal circulatory system for extraordinary results.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/mens-tea/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/107MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Immunological Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea</span><h3 class="tc-name">Immunological</h3><p class="tc-desc">Nourishes and strengthens your immune system.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-inmunologico/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/118MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Bloat and Burn Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea Matcha</span><h3 class="tc-name">Bloat &amp; Burn</h3><p class="tc-desc">Energy boost, appetite control and joint protection. Ally of an active life.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/organic-bloat-and-burn-tea/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/05/135MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Sweet Dreams Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea</span><h3 class="tc-name">Sweet Dreams</h3><p class="tc-desc">Being healthy requires quality sleep. Deep rest and recovery support.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-dulces-suenos-sweet-dreams-tea/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+      <article class="tc">
+        <div class="tc-img"><img src="https://michellepeiret.com/wp-content/uploads/2023/10/159MICHELLE-PEIRET-TEAS-NEW-25-600x600.webp" alt="Healthy Liver Tea" loading="lazy"></div>
+        <div class="tc-body"><span class="tc-lbl">Tea</span><h3 class="tc-name">Healthy Liver</h3><p class="tc-desc">Cleans the liver, lowers cholesterol and stress. Powerful fat burner.</p><span class="tc-srvg">15 servings · 1 oz</span><span class="tc-price">$25</span><a href="https://michellepeiret.com/producto/te-healthy-liver/" class="tc-cta">Shop Now →</a></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT MICHELLE -->
+<section class="about">
+  <img class="about-photo"
+       src="../../Ad%20Creative-references/Assets/michelle%20pics%20with%20products%20/221MICHELLE%20PEIRET%20CUMPLE%20SUPLEMENTOS-Edit%20(1).jpg"
+       alt="Michelle Peiret, Nutrigenomic Specialist">
+  <div class="about-overlay" aria-hidden="true"></div>
+  <div class="about-body fade">
+    <span class="lbl" style="color:rgba(255,255,255,.6)">Meet Your Formulator</span>
+    <h2 class="about-title">Michelle Peiret,<br><em>Nutrigenomic Specialist</em></h2>
+    <p class="about-bio">"I designed every formula asking one question: what does your DNA actually need? Not what's trendy — what the science says about your genes, your cells, and your long-term health."</p>
+    <div class="creds">
+      <span class="cred">Nutrigenomic Specialist</span>
+      <span class="cred">Eurofins Certified</span>
+      <span class="cred">Clinical Evidence-Based</span>
+      <span class="cred">GMP Manufactured</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY MARKS -->
+<section class="quality">
+  <div class="qual-inner fade">
+    <span class="lbl">Quality Standards</span>
+    <h2 class="h2">What you see is what <em>you get.</em></h2>
+    <p class="desc">Every batch third-party tested. Patented ingredients at clinical doses. No fillers, no compromise.</p>
+    <div class="marks">
+      <div class="mark">
+        <div class="mark-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 1-6.23-.693L5 14.5m14.8.8 1.402 1.402c1 1 .03 2.798-1.414 2.798H4.213c-1.445 0-2.414-1.798-1.414-2.798L4.2 15.3"/></svg></div>
+        <div class="mark-nm">Eurofins Tested</div><div class="mark-ds">Third-party purity verification</div>
+      </div>
+      <div class="mark">
+        <div class="mark-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg></div>
+        <div class="mark-nm">Patented Forms</div><div class="mark-ds">Magtein®, UC-II® and more</div>
+      </div>
+      <div class="mark">
+        <div class="mark-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
+        <div class="mark-nm">GMP Certified</div><div class="mark-ds">FDA-registered facilities</div>
+      </div>
+      <div class="mark">
+        <div class="mark-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-pri)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg></div>
+        <div class="mark-nm">USA Distributed</div><div class="mark-ds">Miami, FL · Global shipping</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="fcta">
+  <h2 class="fcta-title">Your biology deserves <em>precision.</em></h2>
+  <p class="fcta-sub">Shop the complete Michelle Peiret HEALTH collection and discover the protocol your DNA was waiting for.</p>
+  <a href="https://michellepeiret.com/mp-health/" class="btn-w">Shop the Full Collection</a>
+</section>
+
+<footer>
+  <p>© 2025 Michelle Peiret HEALTH &nbsp;·&nbsp; <a href="https://michellepeiret.com/mp-health/">michellepeiret.com</a> &nbsp;·&nbsp; Miami, FL</p>
+  <p class="disc">*These statements have not been evaluated by the FDA. These products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)} });
+  },{threshold:0.06});
+  document.querySelectorAll('.fade,.pc,.proto-card,.tc').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
